@@ -7,7 +7,7 @@ print("Fechou")
 soma = 0
 valor = 1
 while (valor <= 100):
-    print(valor)
+    print(valor )
     soma += valor
     valor += 1
 print(soma)
