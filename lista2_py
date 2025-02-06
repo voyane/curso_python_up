@@ -1,0 +1,22 @@
+teste = list()
+teste.append("Voyane")
+teste.append(30)
+galera = list()
+galera.append(teste[:])
+teste[0] = ("Dario")
+teste[1] = (7)
+galera.append(teste[:])
+print(galera)
+
+dados = [["Dario", 7], ["Voyane", 9], ["Darrch", 30], ["DC", 91], ["Sangue", 3]]
+print(dados[0][0]) 
+print(dados[2][1])
+print(dados[3][1])
+
+for p in dados:
+    print(f"{p[0]} tem {p[1]} anos de idade")
+
+import random
+cidades = ["Maputo", "Matola", "Xai-Xai", "Inhambane", "Chimoio", "Beira", "Quelimane", "Tete", "Nampula", "Lichinga", "Pemba"]
+escolha = random.choices(cidades)
+print(escolha)
