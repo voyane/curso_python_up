@@ -1,0 +1,19 @@
+def soma (a, b):
+    soma = a + b
+    print(soma)
+
+
+#Programa principal  
+soma(5, 6)
+
+
+#Varios parametros
+def contador(*num):
+    tam = len(num)
+    print(f"Recebi os valores {num} que sao ao todo {tam} numeros" )
+
+
+#Programa principal
+contador(1,3,5,7,9,11)
+contador(2,4,6,8,10)
+contador(7,9,30)

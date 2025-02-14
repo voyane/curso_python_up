@@ -9,3 +9,8 @@ if i > 2500:
 else:
     tax = 200
 print(tax)
+
+
+s1 = {1,3,5,6,8}
+s2 = {2,3,5,6,9}
+print(s1&s2)
