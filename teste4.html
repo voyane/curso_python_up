@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
+  flex-wrap: wrap;
+}
+
+.text-side {
+  flex: 1;
+  min-width: 300px;
+}
+
+.text-side h2 {
+  color: #b8860b;
+  font-size: 32px;
+  margin-bottom: 20px;
+}
+
+.text-side p {
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.carousel-side {
+  flex: 1;
+  min-width: 300px;
+  position: relative;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.slide {
+  display: none;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.carousel-buttons {
+  position: absolute;
+  top: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  transform: translateY(-50%);
+}
+
+.carousel-buttons button {
+  background-color: rgba(184, 134, 11, 0.8);
+  border: none;
+  color: white;
+  font-size: 24px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+    </style>
+    
+</head>
+<body>
+    <div class="section">
+        <div class="text-side">
+          <h2>Quem Somos</h2>
+          <p>
+            Somos uma empresa com mais de 14 anos de experiência em eventos. 
+            Oferecemos soluções personalizadas em catering, decoração, aluguer de material e muito mais.
+          </p>
+        </div>
+      
+        <div class="carousel-side">
+          <div class="carousel">
+            <div class="slide active">
+              <img src="imagens/_MG_1218.png" alt="Imagem 1">
+            </div>
+            <div class="slide">
+              <img src="imagens/cadeiras.png" alt="Imagem 2">
+            </div>
+            <div class="slide">
+              <img src="imagens/_MG_1218.png" alt="Imagem 3">
+            </div>
+          </div>
+          <div class="carousel-buttons">
+            <button onclick="prevSlide()">❮</button>
+            <button onclick="nextSlide()">❯</button>
+          </div>
+        </div>
+      </div> 
+</body>
+</html>

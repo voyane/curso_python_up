@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seção Caminhão</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: 100vh;
+            background-color: #004F5D;
+            padding: 0 50px;
+            position: relative;
+        }
+
+        .image-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+
+        .image-container img {
+            max-width: 90%;
+            height: auto;
+        }
+
+        .text-container {
+            flex: 1;
+            color: white;
+            padding: 60px;
+            background-color: #004F5D;
+            border-top-left-radius: 200px;
+            border-bottom-left-radius: 200px;
+            position: relative;
+        }
+
+        .text-container h1 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .text-container p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: black;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .button:hover {
+            background: #222;
+        }
+
+        .button::before {
+            content: "➜";
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        /* Estilo para o fundo circular */
+        .background-circle {
+            position: absolute;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-color: #005F6B;
+            border-top-left-radius: 50%;
+            border-bottom-left-radius: 50%;
+            z-index: -1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="caminhao.png" alt="Caminhão"> <!-- Substitua pelo caminho correto da imagem -->
+        </div>
+        <div class="text-container">
+            <h1>Com um <strong>processo seguro, transparente e personalizado</strong>, garantimos que seu caminhão KAMA chegue ao seu destino.</h1>
+            <p>Na Gigante Motors, entendemos que cada operação logística ou empresarial possui necessidades específicas. Oferecemos um serviço exclusivo de importação sob encomenda de caminhões KAMA.</p>
+            <a href="#" class="button">Ir à loja para compra</a>
+        </div>
+        <div class="background-circle"></div>
+    </div>
+</body>
+</html>

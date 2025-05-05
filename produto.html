@@ -1,0 +1,184 @@
+<div style="background-color: #17a2b8; padding: 30px; border-radius: 10px; font-family: 'Arial', sans-serif; max-width: 900px; margin: auto;">
+    <h2 style="color: white; text-align: center; margin-bottom: 30px;">Simulador de Financiamento</h2>
+  
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
+      <div style="flex: 1 1 40%;">
+        <label style="color: white;">Valor Pretendido</label><br>
+        <input id="valor" type="text" oninput="formatearMoneda(this)" style="width: 100%; padding: 10px; border-radius: 5px; border: none;">
+      </div>
+  
+      <div style="flex: 1 1 40%;">
+        <label style="color: white;">Data de Início</label><br>
+        <input id="prazo" type="date" style="width: 100%; padding: 10px; border-radius: 5px; border: none;">
+      </div>
+  
+      <div style="flex: 1 1 30%;">
+        <label style="color: white;">Taxa de Juro Mensal (%)</label><br>
+        <input id="juroMensal" type="number" value="1" style="width: 100%; padding: 10px; border-radius: 5px; border: none;">
+      </div>
+  
+      <div style="flex: 1 1 30%;">
+        <label style="color: white;">Nº de Prestações</label><br>
+        <input id="prestacoes" type="number" value="12" style="width: 100%; padding: 10px; border-radius: 5px; border: none;">
+      </div>
+    </div>
+  
+    <div style="text-align: center; margin-top: 30px;">
+      <button onclick="gerarTabela()" style="background-color: white; color: #17a2b8; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
+        Calcular
+      </button>
+      <button onclick="exportarPDF()" style="background-color: white; color: #17a2b8; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+        PDF
+      </button>
+      <button onclick="exportarExcel()" style="background-color: white; color: #17a2b8; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-left: 10px;">
+        Excel
+      </button>
+    </div>
+  
+    <div id="resultado" style="color: white; text-align: center; margin-top: 20px;"></div>
+    <div id="tabela" style="margin-top: 30px; overflow-x: auto;"></div>
+  </div>
+  
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+  
+  
+  <script>
+    let dadosTabela = [];
+  
+    function parseMoneda(str) {
+      return parseFloat(str.replace(/\./g, '').replace(',', '.').replace(/[^\d.]/g, '')) || 0;
+    }
+  
+    function formatearMoneda(input) {
+      const val = input.value.replace(/\D/g, '');
+      const num = parseFloat(val) / 100;
+      if (!isNaN(num)) {
+        input.value = num.toLocaleString('pt-PT', { minimumFractionDigits: 2 }) + ' MZN';
+      }
+    }
+  
+    function formatMoz(valor) {
+      return valor.toLocaleString('pt-PT', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }) + ' MZN';
+    }
+  
+    function gerarTabela() {
+      const valor = parseMoneda(document.getElementById('valor').value);
+      const juroMensal = parseFloat(document.getElementById('juroMensal').value) / 100;
+      const prestacoes = parseInt(document.getElementById('prestacoes').value);
+      const dataInicio = new Date(document.getElementById('prazo').value);
+  
+      if (!valor || !juroMensal || !prestacoes || isNaN(dataInicio.getTime())) {
+        document.getElementById('resultado').innerHTML = "Por favor, preencha todos os campos corretamente.";
+        document.getElementById('tabela').innerHTML = "";
+        return;
+      }
+  
+      const parcela = (valor * juroMensal) / (1 - Math.pow(1 + juroMensal, -prestacoes));
+      let saldoDevedor = valor;
+      dadosTabela = [];
+  
+      let tabelaHTML = `
+        <table id="tabelaHTML" style="width: 100%; border-collapse: collapse; background-color: white; color: #333;">
+          <thead>
+            <tr style="background-color: #138496; color: white;">
+              <th style="padding: 10px;">#</th>
+              <th style="padding: 10px;">Data</th>
+              <th style="padding: 10px;">Prestação</th>
+              <th style="padding: 10px;">Juro</th>
+              <th style="padding: 10px;">Amortização</th>
+              <th style="padding: 10px;">Saldo Restante</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+  
+      for (let i = 1; i <= prestacoes; i++) {
+        const juros = saldoDevedor * juroMensal;
+        const amortizacao = parcela - juros;
+        saldoDevedor -= amortizacao;
+  
+        const dataParcela = new Date(dataInicio);
+        dataParcela.setMonth(dataParcela.getMonth() + (i - 1));
+        const dataFormatada = dataParcela.toLocaleDateString('pt-PT');
+  
+        tabelaHTML += `
+          <tr style="text-align: center;">
+            <td style="padding: 10px;">${i}</td>
+            <td style="padding: 10px;">${dataFormatada}</td>
+            <td style="padding: 10px;">${formatMoz(parcela)}</td>
+            <td style="padding: 10px;">${formatMoz(juros)}</td>
+            <td style="padding: 10px;">${formatMoz(amortizacao)}</td>
+            <td style="padding: 10px;">${formatMoz(saldoDevedor > 0 ? saldoDevedor : 0)}</td>
+          </tr>
+        `;
+  
+        dadosTabela.push([
+          i,
+          dataFormatada,
+          parcela.toFixed(2),
+          juros.toFixed(2),
+          amortizacao.toFixed(2),
+          saldoDevedor > 0 ? saldoDevedor.toFixed(2) : "0.00"
+        ]);
+      }
+  
+      tabelaHTML += `</tbody></table>`;
+      document.getElementById('resultado').innerHTML = `
+        <p><strong>Prestação Fixa:</strong> ${formatMoz(parcela)}</p>
+        <p><strong>Total Pago:</strong> ${formatMoz(parcela * prestacoes)}</p>
+      `;
+      document.getElementById('tabela').innerHTML = tabelaHTML;
+    }
+  
+    function exportarPDF() {
+      if (!dadosTabela.length) return alert("Calcule o financiamento primeiro.");
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Tabela de Amortização", 14, 16);
+      doc.autoTable({
+        head: [["#", "Data", "Prestação", "Juro", "Amortização", "Saldo"]],
+        body: dadosTabela.map(row => row.map(v => parseFloat(v).toLocaleString('pt-PT', {minimumFractionDigits: 2}) + " MZN")),
+        startY: 20
+      });
+      doc.save("tabela_financiamento.pdf");
+    }
+  
+    function exportarExcel() {
+      if (!dadosTabela.length) return alert("Calcule o financiamento primeiro.");
+      const wb = XLSX.utils.book_new();
+      const ws_data = [
+        ["#", "Data", "Prestação", "Juro", "Amortização", "Saldo"],
+        ...dadosTabela
+      ];
+      const ws = XLSX.utils.aoa_to_sheet(ws_data);
+      XLSX.utils.book_append_sheet(wb, ws, "Amortização");
+      XLSX.writeFile(wb, "tabela_financiamento.xlsx");
+    }
+  </script>
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forma Personalizada</title>
+    <style>
+        .shape {
+            width: 500px; /* Ajuste conforme necessário */
+            height: 250px; /* Ajuste conforme necessário */
+            background-color: #005F6B; /* Cor baseada na imagem */
+            border-top-left-radius: 125px; /* Metade da altura para borda arredondada */
+            border-bottom-left-radius: 125px; /* Metade da altura para borda arredondada */
+        }
+    </style>
+</head>
+<body>
+    <div class="shape"></div>
+</body>
+</html>

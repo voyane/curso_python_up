@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momentos Inesquecíveis</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background-color: #fdfdfd;
+    }
+
+    .momentos-section {
+      text-align: center;
+      background-color: #fdfdfd;
+      padding: 40px 20px 0;
+    }
+
+    .momentos-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 40px;
+      color: #b88c2c; /* cor dourada do título */
+      margin: 0;
+    }
+
+    .momentos-section p {
+      max-width: 700px;
+      margin: 20px auto 40px;
+      font-size: 18px;
+      color: #b88c2c;
+      line-height: 1.5;
+    }
+
+    .imagens-lado-a-lado {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      background-color: #e9d4a4; /* fundo bege claro */
+      padding: 40px 20px;
+      flex-wrap: wrap;
+    }
+
+    .imagens-lado-a-lado img {
+      width: 300px;
+      height: auto;
+      border-radius: 5px;
+      object-fit: cover;
+    }
+
+    @media (max-width: 960px) {
+      .imagens-lado-a-lado {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .imagens-lado-a-lado img {
+        width: 90%;
+        max-width: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+    <section class="momentos-section">
+        <h2>MOMENTOS<br>INESQUECÍVEIS</h2>
+        <p>
+          Contamos com uma equipa criativa, dinâmica e profissional para tratar cada projecto de uma forma personalizada
+          pensando em cada detalhe.
+        </p>
+      
+        <div class="imagens-lado-a-lado">
+          <img src="imagens/elegant-wedding-tables-min.png" alt="Decoração de casamento">
+          <img src="imagens/pretty-little-white-brown-cupcakes-stand-tired-dish-min.png" alt="Doces em bandeja">
+          <img src="imagens/WhatsApp Image 2024-11-11 at 2.42.25 PM (2)-min (1).png" alt="Mesas de evento">
+        </div>
+      </section>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Rodapé Estilizado</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <style>
+    footer {
+      background-color: #f4e8c1;
+      font-family: Arial, sans-serif;
+      color: #333;
+    
+    }
+
+    .o_footer_logo img {
+      max-width: 180px;
+    }
+
+    .btn-custom {
+      background-color: transparent;
+      border-color: #000;
+      padding: 8px 16px;
+      font-size: 16px;
+      margin: 5px;
+      transition: all 0.3s;
+    }
+
+    .btn-custom:hover {
+      background-color: #000;
+      color: #fff !important;
+    }
+
+    .list-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 0;
+    }
+
+    .list-inline-item {
+      list-style: none;
+    }
+
+    .s_share a {
+      color: #000;
+      margin-left: 10px;
+      font-size: 20px;
+      transition: color 0.3s;
+    }
+
+    .s_share a:hover {
+      color: #b88c2c;
+    }
+
+    .o_footer_copyright {
+      background-color: #e6d296;
+      font-size: 14px;
+      padding: 15px 0;
+    }
+
+    .o_footer_copyright span,
+    .o_footer_copyright a {
+      color: #333;
+    }
+
+    .o_footer_copyright .btn {
+      font-size: 14px;
+      padding: 4px 8px;
+    }
+
+    .dropdown-menu {
+      background-color: #fff8dc;
+      border: 1px solid #ccc;
+    }
+
+    .dropdown-menu a {
+      color: #333;
+      padding: 5px 10px;
+    }
+
+    .dropdown-menu a:hover {
+      background-color: #f1e0a1;
+    }
+
+    @media (max-width: 768px) {
+      .row {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .list-inline {
+        justify-content: center;
+      }
+
+      .text-right {
+        text-align: center !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Seu footer aqui ↓ -->
+<footer id="bottom" class="o_footer o_colored_level o_cc">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <!-- Logo -->
+      <div class="pt56 col-lg-5 pb56 text-center text-lg-start">
+        <a href="/" class="o_footer_logo logo">
+          <img src="/web/image/252007-eac1ccf5/Layer%200.png" class="img-fluid" alt="Logo">
+        </a>
+      </div>
+
+      <!-- Navegação -->
+      <div class="d-flex align-items-center justify-content-center justify-content-lg-start col-lg-5 pt72">
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item">
+            <a class="btn btn-custom text-black" href="/"><strong>Página Inicial</strong></a>
+          </li>
+          <li class="list-inline-item">
+            <a class="btn btn-custom text-black" href="/catering"><strong>Catering</strong></a>
+          </li>
+          <li class="list-inline-item">
+            <a class="btn btn-custom text-black" href="/aluguer"><strong>Aluguel</strong></a>
+          </li>
+          <li class="list-inline-item">
+            <a class="btn btn-custom text-black" href="/decoracao"><strong>Decoração</strong></a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Redes sociais -->
+      <div class="col-lg-3 offset-lg-1 pb16 pt0 text-right">
+        <div class="s_share text-end">
+          <a href="#" class="s_share_facebook"><i class="fab fa-facebook fa-2x m-1"></i></a>
+          <a href="#" class="s_share_twitter"><i class="fab fa-twitter fa-2x m-1"></i></a>
+          <a href="#" class="s_share_instagram"><i class="fab fa-instagram fa-2x m-1"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Copyright -->
+  <div class="o_footer_copyright o_colored_level o_cc">
+    <div class="container py-3">
+      <div class="row">
+        <div class="col-sm text-center text-sm-start">
+          <span class="me-2">© 2025 Nome da Empresa</span>
+
+          <!-- Idiomas -->
+          <div class="js_language_selector dropup d-inline-block ms-2">
+            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle" data-toggle="dropdown">
+              <img class="o_lang_flag" src="/base/static/img/country_flags/pt.png?height=25" alt="pt">
+              <span> Português</span>
+            </button>
+            <div class="dropdown-menu">
+              <a href="/en/contactus" class="dropdown-item js_change_lang">
+                <img class="o_lang_flag" src="/base/static/img/country_flags/us.png?height=25">
+                English (US)
+              </a>
+              <a href="/pt/contactus" class="dropdown-item js_change_lang active">
+                <img class="o_lang_flag" src="/base/static/img/country_flags/pt.png?height=25">
+                Português
+              </a>
+              <a class="dropdown-item" href="#">
+                <i class="fa fa-plus-circle"></i> Adicionar idioma...
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

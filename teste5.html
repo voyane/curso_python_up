@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulário com Imagem</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    .form-container {
+      display: flex;
+      align-items:center;
+      width: auto;
+      height: auto;
+    }
+
+    .form-img {
+      width: auto;
+    
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border-top-right-radius: 100px;
+      border-bottom-right-radius: 100px;
+    }
+
+    .form-img img {
+      width:auto;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .form-box {
+      width: 50%;
+      background-color: #d1ad5d;
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .form-box form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .form-box input,
+    .form-box textarea {
+      padding: 15px;
+      border: none;
+      border-radius: 30px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .form-box input::placeholder,
+    .form-box textarea::placeholder {
+      color: #a65f00;
+      font-weight: bold;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+    }
+
+    .form-row input {
+      flex: 1;
+    }
+
+    textarea {
+      resize: vertical;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <div class="form-img">
+    <img src="imagens/_MG_1673-min.png" alt="Chef"> <!-- Substitua pelo caminho real da imagem -->
+  </div>
+  <div class="form-box">
+    <form>
+      <input type="text" placeholder="Nome *" required>
+      <input type="email" placeholder="Email *" required>
+      <input type="tel" placeholder="Contacto *" required>
+      <input type="text" placeholder="Tipo de Evento *" required>
+
+      <div class="form-row">
+        <input type="date" placeholder="Data *" required>
+        <input type="number" placeholder="No. de Convidados *" required>
+      </div>
+
+      <textarea rows="4" placeholder="Mensagem (opcional) *"></textarea>
+    </form>
+  </div>
+</div>
+
+</body>
+</html>
